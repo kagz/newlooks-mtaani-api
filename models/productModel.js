@@ -21,14 +21,7 @@ const productSchema = new mongoose.Schema(
       // validate: [validator.isAlpha, 'Product name must only contain characters']
     },
     slug: String,
-    // duration: {
-    //   type: Number,
-    //   required: [true, 'A product must have a duration']
-    // },
-    // maxGroupSize: {
-    //   type: Number,
-    //   required: [true, 'A product must have a group size']
-    // },
+
     size: {
       type: String,
       required: [true, 'A product must have a size'],
@@ -81,42 +74,6 @@ const productSchema = new mongoose.Schema(
       default: Date.now(),
       select: false
     }
-    // ,
-    // startDates: [Date],
-    // secretProduct: {
-    //   type: Boolean,
-    //   default: false
-    // },
-    // startLocation: {
-    //   // GeoJSON
-    //   type: {
-    //     type: String,
-    //     default: 'Point',
-    //     enum: ['Point']
-    //   },
-    //   coordinates: [Number],
-    //   address: String,
-    //   description: String
-    // },
-    // locations: [
-    //   {
-    //     type: {
-    //       type: String,
-    //       default: 'Point',
-    //       enum: ['Point']
-    //     },
-    //     coordinates: [Number],
-    //     address: String,
-    //     description: String,
-    //     day: Number
-    //   }
-    // ],
-    // guides: [
-    //   {
-    //     type: mongoose.Schema.ObjectId,
-    //     ref: 'User'
-    //   }
-    // ]
   },
   {
     toJSON: { virtuals: true },
@@ -127,11 +84,6 @@ const productSchema = new mongoose.Schema(
 // productSchema.index({ price: 1 });
 productSchema.index({ price: 1, ratingsAverage: -1 });
 productSchema.index({ slug: 1 });
-// productSchema.index({ startLocation: '2dsphere' });
-
-// productSchema.virtual('durationWeeks').get(function() {
-//   return this.duration / 7;
-// });
 
 // Virtual populate
 productSchema.virtual('reviews', {
@@ -147,22 +99,6 @@ productSchema.pre('save', function(next) {
 });
 
 // QUERY MIDDLEWARE
-// productSchema.pre('find', function(next) {
-// productSchema.pre(/^find/, function(next) {
-//   this.find({ secretProduct: { $ne: true } });
-
-//   this.start = Date.now();
-//   next();
-// });
-
-// productSchema.pre(/^find/, function(next) {
-//   this.populate({
-//     path: 'guides',
-//     select: '-__v -passwordChangedAt'
-//   });
-
-//   next();
-// });
 
 const Product = mongoose.model('Product', productSchema);
 
