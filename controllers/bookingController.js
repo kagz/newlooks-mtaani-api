@@ -16,7 +16,9 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     // success_url: `${req.protocol}://${req.get('host')}/my-products/?product=${
     //   req.params.productId
     // }&user=${req.user.id}&price=${product.price}`,
-    success_url: `${req.protocol}://${req.get('host')}/my-products?alert=booking`,
+    success_url: `${req.protocol}://${req.get(
+      'host'
+    )}/my-products?alert=booking`,
     cancel_url: `${req.protocol}://${req.get('host')}/product/${product.slug}`,
     customer_email: req.user.email,
     client_reference_id: req.params.productId,
@@ -25,7 +27,9 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
         name: `${product.name} Product`,
         description: product.summary,
         images: [
-          `${req.protocol}://${req.get('host')}/img/products/${product.imageCover}`
+          `${req.protocol}://${req.get('host')}/img/products/${
+            product.imageCover
+          }`
         ],
         amount: product.price * 100,
         currency: 'usd',

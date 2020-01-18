@@ -148,21 +148,21 @@ productSchema.pre('save', function(next) {
 
 // QUERY MIDDLEWARE
 // productSchema.pre('find', function(next) {
-productSchema.pre(/^find/, function(next) {
-  this.find({ secretProduct: { $ne: true } });
+// productSchema.pre(/^find/, function(next) {
+//   this.find({ secretProduct: { $ne: true } });
 
-  this.start = Date.now();
-  next();
-});
+//   this.start = Date.now();
+//   next();
+// });
 
-productSchema.pre(/^find/, function(next) {
-  this.populate({
-    path: 'guides',
-    select: '-__v -passwordChangedAt'
-  });
+// productSchema.pre(/^find/, function(next) {
+//   this.populate({
+//     path: 'guides',
+//     select: '-__v -passwordChangedAt'
+//   });
 
-  next();
-});
+//   next();
+// });
 
 const Product = mongoose.model('Product', productSchema);
 

@@ -21,7 +21,7 @@ router
   .route('/monthly-plan/:year')
   .get(
     authController.protect,
-    authController.restrictTo('admin', 'lead-guide', 'guide'),
+    authController.restrictTo('admin'),
     productController.getMonthlyPlan
   );
 
@@ -40,7 +40,9 @@ router
   .get(productController.getAllProducts)
   .post(
     authController.protect,
-    authController.restrictTo('admin', 'lead-guide'),
+    authController.restrictTo('admin'),
+    productController.uploadProductImages,
+    productController.resizeProductImages,
     productController.createProduct
   );
 router.get('/:slug', productController.getProduct);
@@ -49,14 +51,14 @@ router
   .get(productController.getProduct)
   .patch(
     authController.protect,
-    authController.restrictTo('admin', 'lead-guide'),
+    authController.restrictTo('admin'),
     productController.uploadProductImages,
     productController.resizeProductImages,
     productController.updateProduct
   )
   .delete(
     authController.protect,
-    authController.restrictTo('admin', 'lead-guide'),
+    authController.restrictTo('admin'),
     productController.deleteProduct
   );
 
