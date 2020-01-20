@@ -21,7 +21,7 @@ router
     productController.resizeProductImages,
     productController.createProduct
   );
-router.get('/:slug', productController.getProduct);
+// router.get('/:slug', productController.getProduct);
 router
   .route('/:id')
   .get(productController.getProduct)
