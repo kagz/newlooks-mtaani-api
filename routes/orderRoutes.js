@@ -19,7 +19,7 @@ router
     orderController.addOrder
   );
 
-router.use(authController.restrictTo('admin', 'user'));
+// router.use(authController.restrictTo('admin', 'user'));
 router
   .route('/:id')
   .get(orderController.getOrder)
