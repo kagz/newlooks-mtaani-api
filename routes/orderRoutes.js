@@ -10,7 +10,7 @@ router
   .route('/')
   .get(
     authController.protect,
-    //authController.restrictTo('admin'),
+    authController.restrictTo('admin'),
     orderController.getAllOrders
   )
   .post(

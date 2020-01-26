@@ -32,7 +32,6 @@ exports.addOrder = catchAsync(async (req, res, next) => {
 exports.getMyOrders = catchAsync(async (req, res, next) => {
   if (!req.body.user) req.body.user = req.user.id;
 
-  //console.log('THESE HOES', req.body.user);
   await Order.find({ user: req.body.user })
     .populate('products.product')
     .populate('owner')
